@@ -18,10 +18,7 @@ android {
         }
         externalNativeBuild {
             cmake {
-                cppFlags ""
-                arguments "-DANDROID_PLATFORM=android-21", "-DCMAKE_BUILD_TYPE=Release",
-                        "-DANDROID_ARM_MODE=arm"
-                version "3.10.2"
+                arguments "-DANDROID_PLATFORM=android-21", "-DCMAKE_BUILD_TYPE=Release"
             }
         }
     }
@@ -49,7 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-task runNdkBuild(type: Exec, description: 'Build library via ndkbuild') {
+task runNdkBuild(type: Exec) {
     def ndkDir = android.ndkDirectory
     executable = "$ndkDir/ndk-build"
     args = ['NDK_PROJECT_PATH=build/intermediates/ndk',
